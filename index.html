@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site Title</title>
+    <link rel="stylesheet" href="variables.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -13,29 +14,34 @@
 
     <main>
         <h2>Select below</h2>
-        <div class="card-container">
-            <div id="card-button-1" class="card-button">+</div>
-            <div id="card-button-2" class="card-button">+</div>
-            <div id="card-button-3" class="card-button">+</div>
-            <div id="card-button-4" class="card-button">+</div>
-            <div id="card-button-5" class="card-button">+</div>
-            <div id="card-button-6" class="card-button">+</div>
+        <div class="card-container-wrapper">
+            <div class="card-container">
+                <div class="row">
+                    <div id="card-button-1" class="card-button">+</div>
+                    <div id="card-button-2" class="card-button">+</div>
+                    <div id="card-button-3" class="card-button">+</div>
+                </div>
+                <div class="row">
+                    <div id="card-button-4" class="card-button">+</div>
+                    <div id="card-button-5" class="card-button">+</div>
+                    <div id="card-button-6" class="card-button">+</div>
+                </div>
+            </div>
         </div>
-        
-        <button id="reset-button" class="reset-button">Reset</button> <!-- Reset 버튼 추가 -->
-    
+
+        <button id="reset-button" class="reset-button">Reset</button>
+
         <!-- 모달 구조 -->
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span id="close-modal" class="close">&times;</span>
                 <h3>Select here</h3>
-                <div id="card-selection-list"></div> <!-- 카드 리스트를 표시할 곳 -->
+                <div id="card-selection-list"></div>
             </div>
         </div>
     </main>
-    
-    
-    
+
+
     <footer>
         <p>footer example</p>
     </footer>
