@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Title</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Example Header</h1>
+    </header>
+
+    <main>
+        <h2>Select below</h2>
+        <div class="card-container">
+            <div id="card-button-1" class="card-button">+</div>
+            <div id="card-button-2" class="card-button">+</div>
+            <div id="card-button-3" class="card-button">+</div>
+            <div id="card-button-4" class="card-button">+</div>
+            <div id="card-button-5" class="card-button">+</div>
+            <div id="card-button-6" class="card-button">+</div>
+        </div>
+        
+        <button id="reset-button" class="reset-button">Reset</button> <!-- Reset 버튼 추가 -->
+    
+        <!-- 모달 구조 -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h3>Select here</h3>
+                <div id="card-selection-list"></div> <!-- 카드 리스트를 표시할 곳 -->
+            </div>
+        </div>
+    </main>
+    
+    
+    
+    <footer>
+        <p>footer example</p>
+    </footer>
+    
+    <script src="cards.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
