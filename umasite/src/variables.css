@@ -1,0 +1,12 @@
+:root {
+    /* 모달 관련 */
+    --modal-width: 400px;
+
+    /* 카드 관련 */
+    --card-width: 110px;
+    --card-height: 110px;
+    --card-margin: 10px;
+
+    /* 래퍼 관련 */
+    --wrapper-padding: 30px;
+}
