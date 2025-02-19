@@ -1,0 +1,223 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* 배경색 */
+}
+
+header {
+    background: #4CAF50; /* 헤더 배경색 */
+    color: white; /* 텍스트 색상 */
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* 카드 버튼 스타일 */
+.card-button {
+    width: var(--card-width); /* 카드 너비 */
+    height: var(--card-height); /* 카드 높이 */
+    background-color: #ccc; /* 기본 회색 배경 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 10px; /* 모서리 둥글게 */
+    /*margin: var(--card-margin); /* 슬롯 간의 여백 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+.card-button:hover {
+    background-color: #bbb; /* 호버 시 색상 변화 */
+}
+
+/* styles.css */
+
+/* 모달 스타일 */
+.modal {
+    display: none; /* 기본적으로 모달을 숨김 */
+    position: fixed; /* 화면에 고정 */
+    z-index: 1000; /* 다른 요소 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 화면 전체 너비 */
+    height: 100%; /* 화면 전체 높이 */
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명 배경 */
+}
+
+.modal.visible {
+    display: flex; /* 모달이 열릴 때 표시 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 중앙 정렬 */
+}
+
+.modal-content {
+    background-color: #fff; /* 모달 배경색 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 20px; /* 내부 여백 */
+    width: var(--modal-width); /* 고정 너비 */
+    min-height: 300px; /* 최소 높이 설정 */
+    max-height: calc(80vh - 10px); /* 하단 여백을 고려한 최대 높이 설정 */
+    overflow-y: auto; /* 세로 스크롤 활성화 */
+    margin: 0 auto; /* 상하 여백 제거, 좌우 중앙 정렬 */
+    margin-top: 50px; /* 상단 여백 50px 설정 */
+}
+
+.card-selection-list {
+    display: flex; /* Flexbox 사용 */
+    flex-wrap: wrap; /* 줄 바꿈 허용 */
+    justify-content: center; /* 중앙 정렬 */
+    /* align-items: center; /* 세로 중앙 정렬 (선택 사항) */
+}
+
+.card {
+    width: var(--card-width); /* 카드 너비 */
+    margin: var(--card-margin); /* 카드 간의 마진 */
+}
+
+@media (max-width: calc(var(--modal-width) - 20px)) {
+    .card {
+        width: calc((100% - 20px) / 2); /* 최소 2개 표시 */
+    }
+}
+
+/* 모달 닫기 버튼 스타일 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card-image:hover {
+    transform: scale(1.1); /* 호버 시 이미지 확대 */
+}
+
+.card-item {
+    flex: 1 1 calc((var(--modal-width) / 3) - 30px); /* 한 줄에 3개 배치 */
+    max-width: calc((var(--modal-width) / 3) - 30px); /* 최대 너비 설정 */
+    margin: 10px; /* 카드 간 간격 설정 */
+    text-align: center; /* 중앙 정렬 */
+}
+
+/* 카드 이미지 스타일 */
+.card-image {
+     width: 100%; /* 카드 아이템의 너비에 맞게 전체 너비 사용 */
+     height: auto; /* 비율 유지 */
+     max-height: 150px; /* 이미지의 최대 높이를 설정 */
+     object-fit: cover; /* 비율 유지하면서 크기 조정 */
+     border-radius: 5px; /* 모서리 둥글게 */
+ }
+
+.card-name {
+    margin-top: 5px; /* 이미지와 이름 간의 간격 */
+    font-size: 14px; /* 폰트 크기 설정 */
+    color: #333; /* 텍스트 색상 설정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+/* 선택 해제 버튼의 텍스트 스타일 추가 */
+.card-item p {
+    font-size: 14px; /* 모든 카드의 텍스트 크기를 동일하게 설정 */
+}
+
+
+/* 푸터 스타일 */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #4CAF50; /* 푸터 배경색 */
+    color: white; /* 텍스트 색상 */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.card-container-wrapper {
+    background-color: #d3d3d3; /* 연한 회색 배경 */
+    padding: var(--wrapper-padding); /* 내부 여백 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    margin-top: 20px auto; /* 상단 여백 */
+    width: calc(3 * var(--card-width) + 2 * var(--card-margin) + 2 * var(--wrapper-padding)); /* 고정 너비 계산 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 너비 계산 */
+}
+
+.card-container {
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 배치 */
+    align-items: center; /* 중앙 정렬 */
+}
+
+/* 탭 버튼 스타일 */
+#tab-container {
+    margin-top: 20px; /* 탭과 카드 슬롯 간의 간격 */
+    display: flex; /* 수평 정렬 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+.tab-button {
+    background-color: #4CAF50; /* 기본 배경색 */
+    color: white; /* 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    padding: 10px 20px; /* 패딩 */
+    font-size: 16px; /* 글자 크기 */
+    margin-right: 10px; /* 탭 간의 간격 */
+    cursor: pointer; /* 포인터 커서 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+.tab-button.active {
+    background-color: #388E3C; /* 활성화된 탭의 배경색 */
+}
+
+.tab-button:hover {
+    background-color: #45a049; /* 호버 시 색상 변화 */
+}
+
+.row {
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    gap: var(--card-margin); /* 카드 간의 간격을 gap으로 설정 */
+    margin: 5px 0; /* 각 행 간의 여백 */
+}
+
+.row:first-child {
+    margin-top: 0; /* 첫 번째 줄의 위쪽 마진 제거 */
+}
+
+.row:last-child {
+    margin-bottom: 0; /* 마지막 줄의 아래쪽 마진 제거 */
+}
+
+.reset-button {
+    margin-top: 20px; /* 버튼과 슬롯 간의 간격 */
+    padding: 10px 20px; /* 패딩 */
+    font-size: 16px; /* 글자 크기 */
+    cursor: pointer; /* 포인터 커서 */
+    background-color: #f44336; /* 빨간색 배경 */
+    color: white; /* 텍스트 색상 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
+
+.reset-button:hover {
+    background-color: #d32f2f; /* 호버 시 색상 변화 */
+}
