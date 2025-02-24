@@ -1,72 +1,40 @@
+// CardModal.js
 import React, { useState, useEffect } from 'react';
 
-function CardModal({ isOpen, onClose, cards, activeButton, setDecks, activeTab, decks }) {
+function CardModal({ isOpen, onClose, cards, activeTab, decks, setDecks, selectedCardIndex }) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // 모달이 열릴 때마다 검색어 초기화
   useEffect(() => {
-    if (isOpen) {
-      setSearchTerm(''); // 모달 열릴 때 검색어 초기화
-    }
+    if (isOpen) setSearchTerm('');
   }, [isOpen]);
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+  const handleSearchChange = (event) => setSearchTerm(event.target.value);
 
-  const handleCardSelect = (card) => {
-    if (activeButton) {
-      const buttonIndex = activeButton.dataset.index;
-      if (buttonIndex !== undefined) {
-        const updatedDeck = { ...decks };
-        updatedDeck[activeTab][buttonIndex] = card.image;
-        setDecks(updatedDeck);
-        activeButton.style.backgroundImage = `url(${card.image})`;
-        activeButton.style.backgroundSize = 'cover';
-        activeButton.style.color = 'transparent';
-        onClose(); // 모달 닫기
-      } else {
-        console.error('Button index is undefined');
-      }
-    } else {
-      console.error('Active button is undefined');
+  const handleCardSelect = (selectedCard) => {
+    if (selectedCardIndex !== null) {
+      setDecks((prevDecks) => {
+        const updatedDeck = { ...prevDecks };
+        updatedDeck[activeTab][selectedCardIndex] = selectedCard.image;
+        return updatedDeck;
+      });
+      onClose();
     }
   };
 
   const handleDeselect = () => {
-    if (activeButton) {
-      const buttonIndex = activeButton.dataset.index;
-      if (buttonIndex !== undefined) {
-        const updatedDeck = { ...decks };
-        updatedDeck[activeTab][buttonIndex] = null; // 이미지 제거
-        setDecks(updatedDeck);
-        activeButton.style.backgroundImage = ''; // 배경 이미지 제거
-        activeButton.style.color = ''; // 텍스트 색상 초기화
-        onClose(); // 모달 닫기
-      }
+    if (selectedCardIndex !== null) {
+      setDecks((prevDecks) => {
+        const updatedDeck = { ...prevDecks };
+        updatedDeck[activeTab][selectedCardIndex] = null;
+        return updatedDeck;
+      });
+      onClose();
     }
   };
 
-  const renderCardList = () => {
-    const filteredCards = cards.filter(card =>
-      card.name.toLowerCase().includes(searchTerm.toLowerCase()) // 검색어 필터링
-    );
-
-    const cardItems = [
-      <div className="card-item" key="deselect" onClick={handleDeselect}>
-        <img src="/images/image_deselect.png" alt="Deselect" className="card-image" />
-        <p>선택 해제</p>
-      </div>,
-      ...filteredCards.map((card) => (
-        <div className="card-item" key={card.card_id} onClick={() => handleCardSelect(card)}>
-          <img src={card.image} alt={card.name} className="card-image" />
-          <p>{card.name}</p>
-        </div>
-      )),
-    ];
-
-    return cardItems;
-  };
+  const filteredCards = cards.filter((card) =>
+    card.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (!isOpen) return null;
 
@@ -74,7 +42,7 @@ function CardModal({ isOpen, onClose, cards, activeButton, setDecks, activeTab, 
     <div className={`modal ${isOpen ? 'visible' : ''}`}>
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
-        <h3>Select here</h3>
+        <h3>Select Your Card</h3>
 
         <input
           type="text"
@@ -84,8 +52,21 @@ function CardModal({ isOpen, onClose, cards, activeButton, setDecks, activeTab, 
           className="search-input"
         />
 
-        <div id="card-selection-list" className="card-selection-list">
-          {renderCardList()}
+        <div className="card-selection-list">
+          <div className="card-item" onClick={handleDeselect}>
+            <img src="/images/image_deselect.png" alt="Deselect" className="card-image" />
+            <p>Remove Selection</p>
+          </div>
+          {filteredCards.map((card) => (
+            <div
+              className="card-item"
+              key={card.card_id}
+              onClick={() => handleCardSelect(card)}
+            >
+              <img src={card.image} alt={card.name} className="card-image" />
+              <p>{card.name}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
